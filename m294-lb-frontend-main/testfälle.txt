@@ -4,6 +4,8 @@ Wenn
     Die Person eingelogt ist
 Dann
     Werden alle Aufgaben angezeigt
+Kommentar
+    Erfolgreich, 16:03, Dominic
 
 
 #2 Neue Aufgabe hinzufügen
@@ -12,6 +14,8 @@ Wenn
     und dann mit dem Button click bestätigt wird
 Dann
     Wird eine neue Aufgabe hinzugefügt
+Kommentar
+    Erfolgreich, 16:04, Dominic
 
 
 #3 Bestehende Aufgabe bearbeiten
@@ -20,6 +24,8 @@ Wenn
     und die Eingabe bestätigt wird
 Dann
     Wird der Name geändert
+Kommentar
+    Erfolgreich, 16:04, Dominic
 
 
 #4 Bestehende Aufgabe löschen
@@ -27,6 +33,8 @@ Wenn
     Der Lösch-Button geklickt wird
 Dann
     Wird die Aufgabe gelöscht
+Kommentar
+    Erfolgreich, 16:05, Dominic
 
 
 #5 Anmelden
@@ -34,6 +42,8 @@ Wenn
     Korrekte Anmeldedaten eingegeben wurden
 Dann
     Wird der Benutzer angemeldet
+Kommentar
+    Erfolgreich, 16:05, Dominic
 
 
 #6 Unauthentifizierte haben keinen Zugriff
@@ -42,6 +52,8 @@ Wenn
 Dann
     kann dieser Benutzer keine Aufgaben
     ansehen, bearbeiten oder löschen
+Kommentar
+    Erfolgreich, 16:06, Dominic
 
 
 #7 Mit Link auf eine Aufgabe zugreifen
@@ -50,7 +62,7 @@ Wenn
 Dann
     wird die dazugehörige Task geöffnet
 Kommentar
-    Funktioniert nicht
+    Funktioniert nicht, 16:06, Dominic
 
 
 #8 Fehlerhafte eingaben werden nicht akzeptiert
@@ -58,10 +70,13 @@ Wenn
     eine nicht E-Mail im anmeldefenster eingegeben wird
 Dann
     Wird diese Eingabe nicht akzeptiert
-
+Kommentar
+    Erfolgreich, 16:06, Dominic
 
 #9 Fehler werden angezeigt
 Wenn
     Ein nicht eingeloggter User versucht eine Aufgabe zu erstellen
 Dann
     Wird dem User mitgeteilt dass er sich einloggen müsste
+Kommentar
+    Erfolgreich, 16:07, Dominic
