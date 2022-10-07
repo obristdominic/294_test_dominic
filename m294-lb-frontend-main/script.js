@@ -57,6 +57,9 @@
                 if (response.status == 401) {
                     alert("Loggen Sie sich zuerst ein")
                 }
+                else{
+                    successful()
+                }
     })}
 
     function deleteTask(id) {
@@ -64,7 +67,8 @@
             { method: "DELETE",
             headers:{
                 "Authorization": `Bearer ${localStorage.getItem("token")}`}
-            })}
+            }).then(successful())
+        }
 
 
     function updateTask(id, title, completed) {
@@ -80,7 +84,7 @@
                     title: title,
                     completed: completed
                 })
-            })
+            }).then(successful())
     }
     function checkedLoggedIn() {
         const loggedIn = document.getElementById("loggedIn")
@@ -130,6 +134,9 @@
             }).then(response => {
                 console.log(response)
             })
+    }
+    function successful(){
+        document.getElementById("successful").classList.remove("hidden")
     }
 
     document.addEventListener("DOMContentLoaded", () => {
