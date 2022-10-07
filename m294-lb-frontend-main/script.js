@@ -3,35 +3,6 @@
         cell.innerText = text
         return cell;
     }
-    function login(email, password) {
-        localStorage.removeItem("token");
-        fetch("http://127.0.0.1:3000/auth/jwt/sign", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-            .then((response) => {
-                return (response.status == 200) ? response.json() : alert(error.message)
-            })
-            .then((response) => {
-            console.log(response)
-            localStorage.setItem("token", response.token)
-                return fetch("http://127.0.0.1:3000/auth/jwt/verify", {
-                    method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    }
-                })
-            }).then(response => {
-                console.log(response)
-            })
-
-    }
 
     function renderTasks(tasks) {
 
@@ -61,13 +32,13 @@
     }
 
     function indexTask() { 
-    fetch("http://127.0.0.1:3000/auth/jwt/tasks"), ({
+    fetch("http://127.0.0.1:3000/auth/jwt/tasks", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }}
+        }})
         .then((response) => response.json())
-        .then((data) => renderTasks(data)))
+        .then((data) => renderTasks(data))
         }
 
     function createTask(title) {
@@ -81,9 +52,12 @@
                 body: JSON.stringify({
                     title: title
                 })
-            }
-        )
-    }
+            }).then(function (response) {
+                console.log(response)
+                if (response.status == 401) {
+                    alert("Loggen Sie sich zuerst ein")
+                }
+    })}
 
     function deleteTask(id) {
         fetch(`http://127.0.0.1:3000/auth/jwt/task/${id}`,
@@ -91,12 +65,6 @@
             headers:{
                 "Authorization": `Bearer ${localStorage.getItem("token")}`}
             })}
-
-
-
-    function searchTask(id) {
-        document.getElementById("")
-    }
 
 
     function updateTask(id, title, completed) {
@@ -112,28 +80,60 @@
                     title: title,
                     completed: completed
                 })
-            }
-        )
+            })
     }
     function checkedLoggedIn() {
         const loggedIn = document.getElementById("loggedIn")
         const notLoggedIn = document.getElementById("loginForm")
 
-        fetch("http://127.0.0.1:3000/auth/jwt/verify", {
-
+        fetch("http://127.0.0.1:3000/auth/jwt/verify",
+        {
+            method:"GET",
+            headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
         }).then(function (response) {
             console.log(response)
-            if (response.status === 401) {
-                loggedIn.classList.remove("hidden")
-                notLoggedIn.classList.add("hidden")
-            } else {
+            if (response.status == 401) {
                 loggedIn.classList.add("hidden")
                 notLoggedIn.classList.remove("hidden")
+            } else {
+                loggedIn.classList.remove("hidden")
+                notLoggedIn.classList.add("hidden")
             }
         })
     }
+    function login(email, password) {
+        localStorage.removeItem("token");
+        fetch("http://127.0.0.1:3000/auth/jwt/sign", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then((response) => {
+                return (response.status == 200) ? response.json() : alert(error.message)
+            })
+            .then((response) => {
+            console.log(response)
+            localStorage.setItem("token", response.token)
+                return fetch("http://127.0.0.1:3000/auth/jwt/verify", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                })
+            }).then(response => {
+                console.log(response)
+            })
+    }
 
     document.addEventListener("DOMContentLoaded", () => {
+        checkedLoggedIn();
         indexTask();
         const newTaskForm = document.getElementById("newTaskForm");
         newTaskForm.addEventListener("submit", () => {
@@ -143,10 +143,15 @@
 
         const loginForm = document.getElementById("loginForm");
         loginForm.addEventListener("submit", (event) => {
-            event.preventDefault()
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
             login(email, password);
 
+        })
+
+        const logout = document.getElementById("logout");
+        logout.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        document.location.reload();
         })
     });

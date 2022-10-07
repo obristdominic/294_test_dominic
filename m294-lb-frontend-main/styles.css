@@ -38,6 +38,7 @@ body{
 table{
     margin: 10px;
     padding: 0;
+    min-width: 50%;
     text-align: center;
     border: solid 1px white;
     border-collapse: collapse;
@@ -80,10 +81,6 @@ tbody tr:nth-child(even){
 thead{
     background-color: rgb(0, 125, 110);
 }
-#loginButton{
-    border: none;
-    border-radius: 10px;
-}
 #createButton{
     border: solid white 2px;
     border-radius: 15px;
@@ -100,4 +97,8 @@ thead{
 }
 .hidden{
     display: none;
+}
+#loginButton{
+    border: none;
+    border-radius: 10px;
 }
