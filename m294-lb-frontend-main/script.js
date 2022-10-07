@@ -1,30 +1,31 @@
     function createCell(text) {
+//creates cells for tables
         const cell = document.createElement("td");
         cell.innerText = text
         return cell;
     }
 
     function renderTasks(tasks) {
-
+//shows all the tasks
         tasks.forEach((task) => {
             const tableRow = document.createElement("tr")
-
+//creates Button to delete a task
             const deleteButton = document.createElement("button");
             deleteButton.innerText = "Delete";
             deleteButton.className = "deleteButton";
             deleteButton.addEventListener("click", () => deleteTask(task.id));
-
+//creates Button to update the due state
             const updateButton = document.createElement("button");
             updateButton.innerText = "Update";
             updateButton.className = "updateButton";
             updateButton.addEventListener("click", () => updateTask(task.id, task.title = prompt("New Title"), task.completed));
-
+//creates Checkbox
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.className = "completed";
             task.completed === true ? checkbox.checked = true : checkbox.checked = false;
             checkbox.addEventListener("change", () => updateTask(task.id, task.title, !task.completed));
-
+//Puts the Parts together
             const tableBody = document.querySelector("tbody");
             tableRow.append(createCell(task.id), createCell(task.title), deleteButton, updateButton, checkbox);
             tableBody.append(tableRow);
@@ -32,6 +33,7 @@
     }
 
     function indexTask() { 
+//gets Tasks
     fetch("http://127.0.0.1:3000/auth/jwt/tasks", {
         method: "GET",
         headers: {
@@ -40,7 +42,7 @@
         .then((response) => response.json())
         .then((data) => renderTasks(data))
         }
-
+//creates new Task
     function createTask(title) {
         fetch("http://127.0.0.1:3000/auth/jwt/tasks",
             {
@@ -61,7 +63,7 @@
                     successful()
                 }
     })}
-
+//deletes Task
     function deleteTask(id) {
         fetch(`http://127.0.0.1:3000/auth/jwt/task/${id}`,
             { method: "DELETE",
@@ -70,7 +72,7 @@
             }).then(successful())
         }
 
-
+//updates an existing Task
     function updateTask(id, title, completed) {
         fetch("http://127.0.0.1:3000/auth/jwt/tasks",
             {
@@ -86,6 +88,7 @@
                 })
             }).then(successful())
     }
+//checks if the user is logged in
     function checkedLoggedIn() {
         const loggedIn = document.getElementById("loggedIn")
         const notLoggedIn = document.getElementById("loginForm")
@@ -107,6 +110,7 @@
             }
         })
     }
+//logs user in
     function login(email, password) {
         localStorage.removeItem("token");
         fetch("http://127.0.0.1:3000/auth/jwt/sign", {
@@ -135,10 +139,11 @@
                 console.log(response)
             })
     }
+//marks a succesful task
     function successful(){
         document.getElementById("successful").classList.remove("hidden")
     }
-
+//Waits until everything is loaded
     document.addEventListener("DOMContentLoaded", () => {
         checkedLoggedIn();
         indexTask();
