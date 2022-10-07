@@ -1,0 +1,67 @@
+
+#1 Übersicht aller Aufgaben anzeigen
+Wenn
+    Die Person eingelogt ist
+Dann
+    Werden alle Aufgaben angezeigt
+
+
+#2 Neue Aufgabe hinzufügen
+Wenn   
+    In der Leiste etwas eingegeben wird
+    und dann mit dem Button click bestätigt wird
+Dann
+    Wird eine neue Aufgabe hinzugefügt
+
+
+#3 Bestehende Aufgabe bearbeiten
+Wenn
+    Der Bearbeitungsknopf gedrükt, ein Text eingegeben
+    und die Eingabe bestätigt wird
+Dann
+    Wird der Name geändert
+
+
+#4 Bestehende Aufgabe löschen
+Wenn 
+    Der Lösch-Button geklickt wird
+Dann
+    Wird die Aufgabe gelöscht
+
+
+#5 Anmelden
+Wenn
+    Korrekte Anmeldedaten eingegeben wurden
+Dann
+    Wird der Benutzer angemeldet
+
+
+#6 Unauthentifizierte haben keinen Zugriff
+Wenn
+    Kein Benutzer angemeldet ist
+Dann
+    kann dieser Benutzer keine Aufgaben
+    ansehen, bearbeiten oder löschen
+
+
+#7 Mit Link auf eine Aufgabe zugreifen
+Wenn
+    dem Link ein / und die gewünschte ID angefügt wird
+Dann
+    wird die dazugehörige Task geöffnet
+Kommentar
+    Funktioniert nicht
+
+
+#8 Fehlerhafte eingaben werden nicht akzeptiert
+Wenn
+    eine nicht E-Mail im anmeldefenster eingegeben wird
+Dann
+    Wird diese Eingabe nicht akzeptiert
+
+
+#9 Fehler werden angezeigt
+Wenn
+    Ein nicht eingeloggter User versucht eine Aufgabe zu erstellen
+Dann
+    Wird dem User mitgeteilt dass er sich einloggen müsste
